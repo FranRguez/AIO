@@ -14,8 +14,7 @@ def predict(src_filename):
 
     # Put your code here so the probability is returned as prediction
     prediction = rfmodel.predict_proba(new_patient_data.values)
-    prediction = prediction[:,1]
-    return prediction
+    return prediction[0][1]
 
 if __name__ == '__main__':
 
