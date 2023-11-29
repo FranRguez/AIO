@@ -1,18 +1,16 @@
 import os
 import pandas as pd
 import joblib
-
-os.chdir('C:/Users/user/TrabajoAIO/AIO/notebooks')
+os.chdir('C:/Users/user/TrabajoAIO/AIO/')
 
 def predict(src_filename):
-    rfmodel = joblib.load('C:/Users/user/TrabajoAIO/AIO/models/ml-model2.model', 'r')
+
+    rfmodel = joblib.load(os.path.join('models/ml-model2.model'))
     """
     :param src_filename: Data of a new patient in csv format
     :return: Returns the probability of Exitus - Death for this new patient in the next 30 days given the data provided
     """
-    new_patient_data = pd.read_csv(src_filename)
-    # We'll do this prediction to be for the first 30 days after the visit.
-    new_patient_data['time'] = 30
+    new_patient_data = pd.read_csv(os.path.join('data',src_filename))
 
     # Put your code here so the probability is returned as prediction
     prediction = rfmodel.predict_proba(new_patient_data.values)
